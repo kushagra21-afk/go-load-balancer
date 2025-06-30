@@ -3,21 +3,24 @@ package main
 import (
 	"log"
 	"net/http"
-	"time"
 )
-func main(){
-	urls:=[]string {
+
+func main() {
+	urls := []string{
 		"https://localhost:5000",
 		"https://localhost:4000",
 		"https://localhost:8000",
 	}
 	var backends []*Container
-	for _,addr := range urls{
-		backend,err := newContainer(addr)
-		if err != nil{
-			log.Fatalf("Invalid url"+addr)
+	for _, addr := range urls {
+		backend, err := newContainer(addr)
+		if err != nil {
+			log.Fatalf("Invalid url" + addr)
 		}
 		backends = append(backends, backend)
 	}
 	checkHealthStatus(backends)
+	lb := NewLoadBalancer(backends)
+	log.Println("🚀 Load balancer running at :8080")
+	log.Fatal(http.ListenAndServe(":8080", lb))
 }
