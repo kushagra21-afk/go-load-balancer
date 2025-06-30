@@ -5,8 +5,7 @@ import (
 	"time"
 )
 
-func checkHealthStatus(backends []*Container){
-	duration := 5*time.Second
+func checkHealthStatus(backends []*Container, path string, duration time.Duration){
 	ticker := time.NewTicker(duration)
 	go func(){
 		<- ticker.C
