@@ -19,5 +19,5 @@ func main(){
 		}
 		backends = append(backends, backend)
 	}
-	
+	checkHealthStatus(backends)
 }
