@@ -26,8 +26,8 @@ func main() {
 		}
 		backends = append(backends, backend)
 	}
-	checkHealthStatus(backends,cfg.HealthCheck.Path,cfg.HealthCheck.IntervalDuration())
+	checkHealthStatus(backends, cfg.HealthCheck.Path, cfg.HealthCheck.IntervalDuration())
 	lb := NewLoadBalancer(backends)
-	log.Println("🚀 Load balancer running at :8080")
-	log.Fatal(http.ListenAndServe(":8080", lb))
+	log.Println("🚀 Load balancer running at", cfg.Listen)
+	log.Fatal(http.ListenAndServe(cfg.Listen, lb))
 }

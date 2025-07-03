@@ -1,0 +1,7 @@
+listen: ":8000"
+backends:
+  - "http://localhost:8082"
+  - "http://localhost:8081"
+health_check:
+  interval_seconds: 10
+  path: "/health"
