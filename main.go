@@ -6,13 +6,6 @@ import (
 )
 
 func main() {
-
-	// urls := []string{
-	// 	"https://localhost:5000",
-	// 	"https://localhost:4000",
-	// 	"https://localhost:8000",
-	// } use this if not comfortable with yaml
-
 	cfg, err := LoadConfig("config.yaml")
 	if err != nil {
 		log.Fatal("Failed to load config:", err)
